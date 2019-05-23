@@ -43,4 +43,28 @@ zrevrangebyscore key min max ...
 ~~~
 zrangebyscore user:ranking (200 +inf withscores
 ~~~
-#### 
+#### 使用场景
+排行榜系统
+
+添加用户赞
+~~~
+zadd user:ranking:2016_03_15 mike 3
+~~~
+增加赞
+~~~
+zincrby user:ranking:2016_03_15 mike 1
+~~~
+取消用户赞
+~~~
+zrem user:ranking:2016_03_15 mike
+~~~
+展示最后赞十个用户
+~~~
+zrevrangebyrank user:ranking:2016_03_15 0 9
+~~~
+展示用户信息及分数
+~~~
+hgetall user:info:tom
+zscore user:ranking:2016_03_15 mike
+zrank user:ranking:2016_03_15 mike
+~~~
